@@ -1,0 +1,4 @@
+biopython
+psycopg2-binary
+langchain
+sentence-transformers
