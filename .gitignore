@@ -1,0 +1,15 @@
+# Ignore virtual environment
+rag_env/
+
+# Ignore environment variables
+env_variables.env
+
+# Ignore compiled Python files and cache
+__pycache__/
+*.pyc
+
+# Ignore ChromaDB storage
+chroma_db/
+
+# ignore ipynp testing
+ipynb testing/

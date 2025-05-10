@@ -24,7 +24,10 @@ from sentence_transformers import SentenceTransformer
 import chromadb
 from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
 from openai import OpenAI
-from db.db_utils import get_connection, store_interaction
+import uuid
+from db.db_utils import log_conversation
+from chat_session import ChatSession
+#loading env variables
 from dotenv import load_dotenv
 load_dotenv('env_variables.env')
 
@@ -304,12 +307,7 @@ class PubMedRAG:
         context = "\n\n".join(retrieval["documents"][0])
         
         # Create prompt
-        prompt = f"""You are a medical research assistant. Use the following PubMed abstracts to answer the question.
-
-{context}
-
-Question: {query}
-Answer:"""
+        prompt = f"""You are a medical research assistant. Use the following PubMed abstracts to answer the question. {context} Question: {query} Answer:"""
         
         # Generate answer
         response = self.openai_client.chat.completions.create(
@@ -327,43 +325,26 @@ Answer:"""
         return answer, retrieval
 
 def main():
-    """Main function to demonstrate usage."""
-    import argparse
-    
-    parser = argparse.ArgumentParser(description="PubMed RAG System")
-    parser.add_argument("--email", required=True, help="Email for NCBI Entrez")
-    parser.add_argument("--topic", required=True, help="Query to search PubMed")
-    parser.add_argument("--query", default="general", help="LLM query")
-    parser.add_argument("--retmax", type=int, default=10, help="Maximum articles to retrieve")
-    parser.add_argument("--k", type=int, default=5, help="Number of chunks to retrieve")
-    
-    args = parser.parse_args()
-    
- 
-    
-    # Initialize RAG system
-    db_manager = ChromaDBManager()
-    rag_system = PubMedRAG(db_manager)
-    
-    # Process data
-    rag_system.process_pubmed_data(args.email, args.topic, retmax=args.retmax)
-    
-    # Answer question
-    answer, retrieval = rag_system.answer_question(args.query, k=args.k)
-    
-    # Print answer
-    print("Answer:")
-    print(answer)
-    
-    # Store retrieved data
-    retrieved_chunks_str = "\n\n".join(retrieval["documents"][0])
-    store_interaction(
-    args.email,
-    args.topic,
-    args.query,
-    retrieved_chunks_str,
-    answer
-)
-    
+    email = input("Email for NCBI Entrez: ").strip()
+    topic = input("PubMed search topic: ").strip()
+
+    db_mgr = ChromaDBManager()
+    rag    = PubMedRAG(db_mgr)
+
+    rag.process_pubmed_data(email, topic, retmax=10)
+    session = ChatSession(rag, email, topic)
+
+    while True:
+        user_q = input("\nYou: ").strip()
+        if user_q.lower() in {"quit", "exit"}:
+            break
+        answer = session.ask(user_q, k=10)
+        print(f"\nAssistant: {answer}")
+
+    session.save()
+    print("Conversation saved.")
+
+
+
 if __name__ == "__main__":
-    main()
+    main() 
