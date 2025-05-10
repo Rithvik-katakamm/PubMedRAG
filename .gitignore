@@ -1,15 +1,15 @@
-# Ignore virtual environment
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
 rag_env/
 
-# Ignore environment variables
+# Environment variables
 env_variables.env
 
-# Ignore compiled Python files and cache
-__pycache__/
-*.pyc
-
-# Ignore ChromaDB storage
+# ChromaDB local storage
 chroma_db/
 
-# ignore ipynp testing
-ipynb testing/
+# macOS system files
+.DS_Store
