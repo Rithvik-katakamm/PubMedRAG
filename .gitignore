@@ -1,15 +1,22 @@
-# Python cache and bytecode
-__pycache__/
+# Byte-compiled / optimized / DLL files
 *.py[cod]
+*.so
 
-# Virtual environment
-rag_env/
+# VS Code workspace settings
+.vscode/
 
-# Environment variables
-env_variables.env
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
 
-# ChromaDB local storage
-chroma_db/
-
-# macOS system files
+# Mac trash files
 .DS_Store
+.Trashes
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# OS-specific
+Thumbs.db
+ehthumbs.db
