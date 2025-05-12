@@ -11,21 +11,21 @@ Clinicians, researchers, and data scientists often need up-to-date insights from
 Provide a **chat-style assistant** that:
 
 1. Pulls the most relevant PubMed abstracts for a given topic in real-time.
-2. Leverages **Retrieval-Augmented Generation (RAG)** so GPT-4o can answer follow-up questions grounded in those abstracts.
-3. Runs **locally with no database dependency** — all vector data is kept only for the life of the chat and deleted on exit.
+2. Leverages **Retrieval-Augmented Generation (RAG)** so GPT-4.1 nano can answer follow-up questions grounded in those abstracts.
+3. Runs **locally** — all vector data is kept only for the life of the chat and deleted on exit.
 
 ---
 
 ## ⚙️ How It Works (High-Level)
 
 User ⇄ CLI chat loop
-        ↓
+        ->
    PubMed fetch (Entrez)
-        ↓
+        ->
    Text chunking + Biobert embedding
-        ↓
+        ->
    Chroma vector DB (ephemeral per chat)
-        ↓
+        ->
       GPT-4o answer
 
 ---
@@ -90,10 +90,12 @@ Assistant: ...
 ## 🧠 Tech Stack
 
 * Python
-* OpenAI GPT-4o
+* OpenAI GPT 4.1 nano
 * HuggingFace Transformers (BioBERT)
 * ChromaDB (in-memory)
 * Entrez (NCBI API)
 
+
+Note: you can switch the open AI api code to Ollama to make this RAG run locally as well. 
 
 
