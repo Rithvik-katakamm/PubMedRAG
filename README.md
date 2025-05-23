@@ -1,4 +1,4 @@
-# 🧠 PubMed RAG (No-DB Edition)
+# 🧠 PubMed RAG
 
 ## 🩺 Business Problem
 
