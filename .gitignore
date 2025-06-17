@@ -1,23 +1,47 @@
-# Byte-compiled / optimized / DLL files
+# Python
+__pycache__/
 *.py[cod]
+*$py.class
 *.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# VS Code workspace settings
+# Data directories
+data/
+chroma_db/
+*.sqlite3
+
+# Environment files
+.env
+env_variables.env
+config/env_variables.env
+
+# IDE
 .vscode/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# Mac trash files
-.DS_Store
-.Trashes
-
-# Logs and temp files
-*.log
-*.tmp
+.idea/
 *.swp
+*.swo
+.DS_Store
 
-# OS-specific
-Thumbs.db
-ehthumbs.db
-rag_env/
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Distribution
+build/
+dist/
+*.egg-info/

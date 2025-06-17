@@ -1,0 +1,26 @@
+# Core dependencies
+openai==1.12.0
+chromadb==0.4.22
+sentence-transformers==2.5.1
+langchain==0.1.9
+langchain-community==0.0.24
+biopython==1.83
+
+# UI dependencies
+rich==13.7.0
+
+# Data processing
+numpy==1.26.4
+pandas==2.2.0
+
+# Environment management
+python-dotenv==1.0.1
+
+# ChromaDB dependencies (included automatically but listed for clarity)
+# pydantic
+# onnxruntime
+# tokenizers
+# sqlite3
+
+# Optional but recommended for M2 optimization
+# torch==2.2.0 (will be installed by sentence-transformers)
