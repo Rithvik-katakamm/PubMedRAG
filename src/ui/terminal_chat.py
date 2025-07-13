@@ -28,12 +28,13 @@ class TerminalChat:
         """Display the minimal header."""
         # Main title
         title = Panel(
-            "[bold white]PubMed Medical Research Assistant[/bold white]",
+            "[bold white]PubMed Medical AI Assistant[/bold white]",
             box=box.DOUBLE,
             style="white",
             expand=False
         )
-        self.console.print(title)
+        self.console.print(title, justify="center")
+        self.console.print("\n")
         
         # Session info - more subtle
         if topic:
@@ -54,15 +55,15 @@ class TerminalChat:
         self.clear_screen()
         
         welcome = Panel(
-            "[bold white]PubMed Medical Research Assistant[/bold white]\n\n"
-            "Search and analyze medical literature with AI",
+            "[bold white]AI Assistant for Medical Clarity[/bold white]\n\n"
+            "Get accurate answers fast with AI",
             box=box.DOUBLE,
             style="white",
             padding=(1, 2),
             expand=False
         )
         
-        self.console.print(welcome)
+        self.console.print(welcome, justify="center")
         self.console.print()
     
     def get_email_input(self) -> str:

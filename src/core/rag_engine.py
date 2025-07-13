@@ -138,9 +138,10 @@ Question: {query}
 
 Instructions:
 - Base your answer solely on the provided context
-- Be concise but comprehensive
+- Be concise
 - Cite specific findings when possible
 - If the context doesn't contain enough information, say so
+- if you dont know say say "I don't have enough information to answer this question."
 
 Answer:"""
         
@@ -149,7 +150,7 @@ Answer:"""
         response = self.openai_client.chat.completions.create(
             model=model,
             messages=[
-                {"role": "system", "content": "You are a medical research assistant that provides accurate, evidence-based answers."},
+                {"role": "system", "content": "You are a medical research assistant named Klare that provides accurate, evidence-based concise answers. you tone is soft because people are coming to you asking questions in high anxiety. so make sure to deliver the messages softly but packed with rich information."},
                 {"role": "user", "content": prompt}
             ],
             temperature=temperature,
