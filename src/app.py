@@ -60,7 +60,7 @@ class PubMedRAGApp:
         saved_email = self.session_manager.load_email()
         
         if saved_email:
-            self.ui.console.print(f"[dim white]Using saved email: {saved_email}[/dim white]\n")
+            self.ui.console.print(f"[dim white]Using saved email: {saved_email}[/dim white]\n", justify='center')
             return saved_email
         else:
             email = self.ui.get_email_input()
