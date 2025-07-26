@@ -6,9 +6,13 @@ langchain==0.1.9
 langchain-community==0.0.24
 biopython==1.83
 
+# Web framework dependencies
+fastapi==0.104.1
+uvicorn==0.24.0
+websockets==12.0
+
 # UI dependencies
 rich==13.7.0
-
 # Data processing
 numpy==1.26.4
 pandas==2.2.0
