@@ -2,7 +2,7 @@
 Embedding Generation Module
 
 Generates embeddings using BioBERT model optimized for medical text.
-Includes M2 optimizations for batch processing.
+Includes M2 optimizations for batch processing. 32 batches in parallel.
 """
 
 from typing import List, Union
@@ -32,7 +32,7 @@ class EmbeddingGenerator:
     def embed_chunks(
         self,
         texts: List[str],
-        batch_size: int = 32,
+        batch_size: int = 32, 
         show_progress_bar: bool = False
     ) -> List[List[float]]:
         """Generate embeddings for a list of text chunks.
