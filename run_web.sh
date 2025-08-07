@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON="$SCRIPT_DIR/.venv/bin/python"
+PYTHON="$SCRIPT_DIR/env/bin/python"
 
 # Check if virtual environment exists
 if [ ! -x "$PYTHON" ]; then
@@ -20,5 +20,6 @@ echo "Press Ctrl+C to stop the server"
 echo ""
 
 cd "$SCRIPT_DIR"
+source "$SCRIPT_DIR/config/env_variables.env"
 export PYTHONPATH="$SCRIPT_DIR/src"
 exec "$PYTHON" -m uvicorn src.web_app:app --host 0.0.0.0 --port 8000 --reload 
