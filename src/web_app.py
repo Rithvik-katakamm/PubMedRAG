@@ -14,9 +14,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
-from core.rag_engine import PubMedRAG
-from core.vector_db import ChromaDBManager
-from chat.session_manager import SessionManager
+from src.core.rag_engine import PubMedRAG
+from src.core.vector_db import ChromaDBManager
+from src.chat.session_manager import SessionManager
+
+
 
 
 # Pydantic models for API
@@ -46,7 +48,6 @@ session_manager = SessionManager(openai_client=rag_engine.openai_client)
 
 # Global state
 current_sessions: Dict[str, Any] = {}
-
 
 class ConnectionManager:
     """Manages WebSocket connections"""
